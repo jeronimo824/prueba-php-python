@@ -31,15 +31,22 @@
             setup(){
                 const alumnos = ref([]);
                 const nuevoAlumno = ref({nombres:'', apellidos:''})
+
+                //lista los usuarios de la base de datos
+
                 const obtenerAlumnos = async () => {
                     const respuesta = await axios.get(apiUrl)
                     alumnos.value=respuesta.data;
                 };
 
+                //elimina los usuarios de la base de datos
+
                 const eliminarAlumno = async(id) => {
                     await axios.delete(`${apiUrl}${id}`);
                     obtenerAlumnos();
                 }
+
+                //crea los usuarios de la base de datos
 
                 const crearAlumno = async () => {
                     try{
